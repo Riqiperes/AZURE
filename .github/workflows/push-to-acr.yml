@@ -1,0 +1,36 @@
+name: Push Image to ACR
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to Azure Container Registry
+        uses: azure/docker-login@v1
+        with:
+          login-server: pruebasazure26.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Create Dockerfile
+        run: |
+          cat <<EOF > azure/fronting/Dockerfile
+          FROM nginx:alpine
+          COPY index.html /usr/share/nginx/html/index.html
+          EXPOSE 80
+          CMD ["nginx", "-g", "daemon off;"]
+          EOF
+
+      - name: Build and Push Docker image
+        run: |
+          IMAGE_NAME="pruebasazure26.azurecr.io/front:latest"
+          docker build -t "$IMAGE_NAME" azure/fronting/
+          docker push "$IMAGE_NAME"
