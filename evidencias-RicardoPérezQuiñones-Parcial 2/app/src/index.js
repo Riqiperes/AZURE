@@ -9,4 +9,3 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`App escuchando en http://localhost:${port}`);
 });
-// Trigger para GitHub Actions - Tarea 3

@@ -1,0 +1,13 @@
+EVIDENCIAS DE IMPLEMENTACIÓN: STATIC WEB APPS
+
+Imagen 1: Configuración del Recurso en Azure
+Explicación: Se muestra la creación del recurso 'Static Web App' desde el portal de Azure (o vía Terraform), configurando el plan 'Free' y la región correspondientes.
+
+Imagen 2: Pipeline de GitHub Actions (webstatic.yml)
+Explicación: Captura del archivo de configuración del workflow donde se definen las rutas 'app_location' y el token de despliegue para automatizar la subida del código.
+
+Imagen 3: Ejecución Exitosa del Workflow
+Explicación: Pantalla de la pestaña 'Actions' en GitHub mostrando el check verde en el job 'Build and Deploy', confirmando que el código se transfirió correctamente a Azure.
+
+Imagen 4: Navegación al Sitio Web
+Explicación: Captura del navegador mostrando la URL final proporcionada por Azure (ej. white-sea-xxx.azurestaticapps.net) con el mensaje personalizado de la aplicación.
