@@ -1,21 +1,17 @@
-PASO A PASO PARA EVIDENCIAS DE APP SERVICE (DOCKER)
+GUÍA PASO A PASO PARA EVIDENCIAS DE APP SERVICE (DOCKER) - TAREA 3
 
-Imagen 1: El Repositorio de Imágenes (ACR)
-- Instrucción: Ve al portal de Azure, busca tu recurso 'Container Registry' (el que empieza con 'acrtarea3...').
-- Qué capturar: Toma screenshot a la pantalla de 'Overview' donde se vea el 'Login server'.
-- Explicación: Se configuró un Azure Container Registry para almacenar de forma privada las imágenes Docker de nuestra aplicación Node.js.
+Imagen 1: Creación del Container Registry (ACR)
+- Instrucción: En el portal de Azure, ve a tu recurso Container Registry ('acrtarea380yk95'). Toma captura a la pantalla de 'Overview'.
+- Descripción: Se implementó un registro privado de contenedores en Azure para alojar la imagen de la aplicación Node.js de forma segura.
 
-Imagen 2: El Pipeline de Despliegue (GitHub Actions)
-- Instrucción: En tu repo de GitHub, ve a la pestaña 'Actions' y haz clic en el workflow 'Build and Deploy to App Service'.
-- Qué capturar: Toma screenshot a los pasos internos (steps) donde se vea 'Build and push Docker image'.
-- Explicación: El pipeline automatiza la construcción de la imagen desde el Dockerfile, la firma y la sube al registro de Azure (ACR).
+Imagen 2: Pipeline de GitHub Actions (appservice.yml)
+- Instrucción: En tu repositorio de GitHub, ve a la pestaña 'Actions' y selecciona el workflow 'Build and Deploy to App Service'. Toma captura a la ejecución exitosa (check verde) mostrando los pasos.
+- Descripción: El pipeline automatiza la construcción de la imagen mediante 'az acr build', integrando el código fuente directamente con el registro de contenedores.
 
-Imagen 3: Configuración del App Service
-- Instrucción: En Azure, ve al recurso 'webapp-tarea3' (App Service). Ve a la sección 'Deployment Center' en el menú lateral.
-- Qué capturar: Screenshot de la pestaña 'Settings' donde se vea que el origen es 'Azure Container Registry'.
-- Explicación: Se configuró el App Service para que su "combustible" sea la imagen Docker que acabamos de subir, asegurando un entorno de ejecución idéntico al de desarrollo.
+Imagen 3: Configuración del App Service con Docker
+- Instrucción: En el portal de Azure, busca el recurso 'webapp-tarea3' (App Service). Ve a 'Deployment Center' y toma captura donde se vea que el origen es 'Azure Container Registry' y la imagen es 'azure-node-app:latest'.
+- Descripción: Se vinculó el App Service con el registro de contenedores (ACR), configurando el despliegue automático de la aplicación containerizada.
 
-Imagen 4: Aplicación Web en vivo
-- Instrucción: En la pantalla de 'Overview' del App Service, haz clic en la 'Default domain' (la URL .azurewebsites.net).
-- Qué capturar: El navegador abierto mostrando el mensaje "Hola desde Azure!" (o el cambio que hayas hecho).
-- Explicación: Despliegue final exitoso de la aplicación containerizada, accesible públicamente a través del servicio de Azure App Service.
+Imagen 4: Aplicación Node.js en Funcionamiento
+- Instrucción: En la pantalla de 'Overview' del App Service, haz clic en la URL del sitio (.azurewebsites.net). Toma captura a la página cargada en el navegador.
+- Descripción: Verificación final de la aplicación desplegada y funcionando correctamente en Azure App Service, accesible públicamente.
