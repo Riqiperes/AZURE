@@ -24,18 +24,9 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Log in to ACR
-      uses: azure/docker-login@v1
-      with:
-        login-server: acrtarea380yk95.azurecr.io
-        username: ${{ secrets.ACR_USERNAME }}
-        password: ${{ secrets.ACR_PASSWORD }}
-
-    - name: Build and push Docker image
+    - name: Build and push image with Azure ACR Build
       run: |
-        IMAGE_NAME=acrtarea380yk95.azurecr.io/azure-node-app:latest
-        docker build -t $IMAGE_NAME app/
-        docker push $IMAGE_NAME
+        az acr build --registry acrtarea380yk95 --image azure-node-app:latest app/
 
     - name: Deploy to Azure App Service
       uses: azure/webapps-deploy@v2
