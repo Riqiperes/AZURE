@@ -24,13 +24,10 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Log in to ACR
+    - name: Set Azure Subscription and Build
       run: |
-        az acr login --name acrtarea380yk95
-
-    - name: Build and push image with Azure ACR Build
-      run: |
-        az acr build --registry acrtarea380yk95 --image azure-node-app:latest app/
+        az account set --subscription "213ab30a-a618-4200-97f0-9efae7cc2f03"
+        az acr build --registry acrtarea380yk95 --resource-group rg-tarea3 --image azure-node-app:latest app/
 
     - name: Deploy to Azure App Service
       uses: azure/webapps-deploy@v2
