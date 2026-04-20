@@ -1,16 +1,24 @@
 # Terraform folders
 .terraform/
 .terraform.lock.hcl
+*.exe
 
 # State files
 *.tfstate
 *.tfstate.backup
 
+# Node.js
+node_modules/
+npm-debug.log
+.env
+
 # Sensitive information
 terraform.tfvars
+
+# Folders to ignore
+__MACOSX/
+tmp_tarea3/
 
 # OS generated files
 .DS_Store
 Thumbs.db
-__MACOSX/
-
