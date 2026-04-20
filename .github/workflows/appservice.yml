@@ -24,21 +24,13 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Get ACR info
-      id: acr_info
-      run: |
-        ACR_NAME=$(az acr list --resource-group rg-tarea3 --query "[0].name" -o tsv)
-        ACR_LOGIN_SERVER=$(az acr list --resource-group rg-tarea3 --query "[0].loginServer" -o tsv)
-        echo "name=$ACR_NAME" >> $GITHUB_OUTPUT
-        echo "server=$ACR_LOGIN_SERVER" >> $GITHUB_OUTPUT
-
     - name: Log in to ACR
       run: |
-        az acr login --name ${{ steps.acr_info.outputs.name }}
+        az acr login --name acrtarea380yk95
 
     - name: Build and push Docker image
       run: |
-        IMAGE_NAME=${{ steps.acr_info.outputs.server }}/azure-node-app:latest
+        IMAGE_NAME=acrtarea380yk95.azurecr.io/azure-node-app:latest
         docker build -t $IMAGE_NAME app/
         docker push $IMAGE_NAME
 
@@ -46,4 +38,4 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'webapp-tarea3'
-        images: '${{ steps.acr_info.outputs.server }}/azure-node-app:latest'
+        images: 'acrtarea380yk95.azurecr.io/azure-node-app:latest'
